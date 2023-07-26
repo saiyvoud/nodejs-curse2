@@ -11,5 +11,6 @@ export const EMessage = {
     serverFaild : "Error Internal Server",
     emailAlready: "Email is Already",
     notFound: "Not Found",
-    pleaseInput : "Please Input:"
+    pleaseInput : "Please Input:",
+    invalidToken: "Invalid Token",
 }

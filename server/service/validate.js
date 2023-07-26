@@ -10,3 +10,7 @@ export const ValidateLogin = (user) => {
   const { password, email } = user;
   return ValidateData({ password, email });
 };
+export const ValidateProfile = (user) => {
+  const { username, phone } = user;
+  return ValidateData({ username, phone });
+};
