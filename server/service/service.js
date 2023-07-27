@@ -18,7 +18,6 @@ export const VerifyToken = (token) => {
           reject("Error Decript");
         }
         let decript = decriptToken.replace(/"/g, "");
-        console.log(decript);
         const user = await Models.User.findById({ _id: decript });
         resovle(user);
       });

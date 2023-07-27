@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import UploadImage from "../config/cloudinary.js";
 import { USER_TYPE } from "../config/globalKey.js";
 import Models from "../model/index.js";
 import { EMessage, SMessage } from "../service/message.js";
@@ -11,8 +12,15 @@ import {
   SendSuccess,
 } from "../service/response.js";
 import { DeCrypts, EnCrypts, jwts } from "../service/service.js";
-import { ValidateRegister, ValidateLogin,ValidateProfile } from "../service/validate.js";
-
+import {
+  ValidateRegister,
+  ValidateLogin,
+  ValidateProfile,
+} from "../service/validate.js";
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 export default class UserController {
   static async login(req, res) {
     try {
@@ -61,7 +69,7 @@ export default class UserController {
       }
       const checkEmail = await Models.User.findOne({ isActive: true, email });
       if (checkEmail) {
-        return SendError403(res, EMessage.emailAlready, checkEmail);
+        return SendError403(res, EMessage.emailAlready);
       }
       const user = await Models.User.create({
         username,
@@ -115,21 +123,38 @@ export default class UserController {
       return SendError500(res, EMessage.serverFaild, error);
     }
   }
-  static async updateProfileImage(req,res){
+  static async updateProfileImage(req, res) {
     try {
       const userId = req.params.userId;
       if (!mongoose.Types.ObjectId.isValid(userId)) {
         return SendError404(res, EMessage.notFound + "UserID");
       }
-      const {files} = req.files;
-      if(!files){
-        return SendError400(res,"files is required!")
+      const path = req.files.image;
+
+      if (!path) {
+        return SendError400(res, "files is required!");
       }
-      
-      // const 
+
+      // path.mv(`./upload/` + path.name);
+      console.log(path.name);
+      // const buff = Buffer.from(files.data, "utf-8");
+      // console.log(buff);
+      const image_url = await UploadImage(path.data);
+      console.log(image_url);
+      if (!image_url) {
+        return SendError400(res, "Error Upload file");
+      }
+      const user = await Models.User.findByIdAndUpdate(
+        userId,
+        {
+          profile: image_url,
+        },
+        { new: true }
+      );
+      return SendSuccess(res, SMessage.update, user);
     } catch (error) {
       console.log(error);
-      return SendError500(res,EMessage.serverFaild,error);
+      return SendError500(res, EMessage.serverFaild, error);
     }
   }
   static async updateProfile(req, res) {
