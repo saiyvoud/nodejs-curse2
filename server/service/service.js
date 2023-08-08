@@ -13,7 +13,7 @@ export const VerifyToken = (token) => {
         if (err) reject(`err${err}`);
 
         const decriptToken = await DeCrypts(decode.id);
-       
+
         if (!decriptToken) {
           reject("Error Decript");
         }
@@ -24,6 +24,23 @@ export const VerifyToken = (token) => {
     } catch (error) {
       console.log(error);
       reject(error);
+    }
+  });
+};
+export const VerifyRefreshToken = (refreshToken) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      jwt.verify(refreshToken, SECRET_KEY, async function (err, decoded) {
+        if (err) return reject(err);
+        const decript = await DeCrypts(decoded.id);
+        const decript2 = await DeCrypts(decript);
+        let decriptReplace = decript2.replace(/"/g, "");
+        const user = await Models.User.findById(decriptReplace)
+        resovle(user.id);
+      });
+    } catch (error) {
+      console.log(error);
+      resovle(false);
     }
   });
 };
@@ -43,6 +60,17 @@ export const DeCrypts = async (data) => {
       const encrypt = crypto.AES.decrypt(data, SECRET_KEY);
       let decriptPass = encrypt.toString(crypto.enc.Utf8);
       resovle(decriptPass);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+export const DeCrypt = async (data) => {
+  return new Promise(async (resovle, reject) => {
+    try {
+      const encrypt = crypto.AES.decrypt(data, SECRET_KEY);
+      // let decriptPass = encrypt.toString(crypto.enc.Utf8);
+      resovle(encrypt);
     } catch (error) {
       reject(error);
     }

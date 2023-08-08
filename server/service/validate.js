@@ -14,3 +14,17 @@ export const ValidateProfile = (user) => {
   const { username, phone } = user;
   return ValidateData({ username, phone });
 };
+export const ValidateChangePassword = (user) => {
+  const { oldPassword, newPassword } = user;
+  return ValidateData({ oldPassword, newPassword });
+};
+// -------- banner -------
+export const ValidateBanner = (banner) => {
+  const { name, detail } = banner;
+  return ValidateData({ name, detail });
+};
+export const ValidateUpdateBanner = (banner) => {
+  const { name, detail,oldImage } = banner;
+  return ValidateData({ name, detail,oldImage });
+};
+

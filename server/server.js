@@ -28,7 +28,7 @@ app.use(
   bodyParser.urlencoded({ extended: true, limit: "500mb", parameterLimit: 500 })
 );
 app.use("/api/v1.0.0",router);
-app.use("/upload", express.static(__dirname));
+app.use("/api/v1.0.0/upload/", express.static("assets"));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(

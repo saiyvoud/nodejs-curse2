@@ -10,7 +10,13 @@ export const SMessage ={
 export const EMessage = {
     serverFaild : "Error Internal Server",
     emailAlready: "Email is Already",
+    notMatchPassword : "Not Match Password",
     notFound: "Not Found",
     pleaseInput : "Please Input:",
     invalidToken: "Invalid Token",
+}
+export const Role = {
+    general: "general",
+    admin: "admin",
+    shop: "shop"
 }
