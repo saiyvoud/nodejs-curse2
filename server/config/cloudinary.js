@@ -16,6 +16,7 @@ cloudinary.config({
 
 const UploadImage = async (files, oldImage) => {
   try {
+    if(!files) return "";
     if (oldImage) {
       const spliturl = oldImage.split("/");
       const img_id = spliturl[spliturl.length - 1].split(".")[0];

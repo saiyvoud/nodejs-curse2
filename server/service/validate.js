@@ -24,7 +24,16 @@ export const ValidateBanner = (banner) => {
   return ValidateData({ name, detail });
 };
 export const ValidateUpdateBanner = (banner) => {
-  const { name, detail,oldImage } = banner;
-  return ValidateData({ name, detail,oldImage });
+  const { name, detail, oldImage } = banner;
+  return ValidateData({ name, detail, oldImage });
 };
-
+//---------- category ---------
+export const ValidateCategory = (category) => {
+  const { name, oldImage } = category;
+  return ValidateData({ name, oldImage });
+};
+// ---------- book ---------
+export const ValidateBook = (book) => {
+  const { name, detail,qty,order_price,sale_price } = book;
+  return ValidateData({ name, detail,qty,order_price,sale_price });
+};

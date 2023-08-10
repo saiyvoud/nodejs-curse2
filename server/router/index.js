@@ -1,6 +1,7 @@
 import express from "express";
 import BannerController from "../controller/banner.controller.js";
 import UserController from "../controller/user.controller.js";
+import CategoryController from "../controller/category.controller.js";
 import { auth, auth_admin } from "../middleware/auth.js";
 
 const router = express.Router();
@@ -23,4 +24,11 @@ router.get(`${banner}/getAll`,auth,BannerController.getAll);
 router.post(`${banner}/insert`,auth,BannerController.insert);
 router.put(`${banner}/update/:bannerId`,auth,BannerController.updateBanner);
 router.put(`${banner}/delete/:bannerId`,auth,BannerController.deleteBanner);
+// ---------- category --------
+const category = "/category";
+router.get(`${category}/getOne/:categoryId`,auth,CategoryController.getOne);
+router.get(`${category}/getAll`,auth,CategoryController.getAll);
+router.post(`${category}/insert`,auth,CategoryController.insert);
+router.put(`${category}/update/:categoryId`,auth,CategoryController.updateCategory);
+router.put(`${category}/delete/:categoryId`,auth,CategoryController.deleteCategory);
 export default router;
