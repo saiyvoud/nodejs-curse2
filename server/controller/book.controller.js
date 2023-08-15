@@ -102,7 +102,7 @@ export default class BookController {
         isActive: true,
       }).populate({
         path: "category_id",
-        select: "name createdAt updatedAt",
+        select: "name image createdAt updatedAt",
       });
       if (!book) {
         return SendError400(res, EMessage.notFound + "book");
