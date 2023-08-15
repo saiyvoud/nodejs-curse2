@@ -34,6 +34,15 @@ export const ValidateCategory = (category) => {
 };
 // ---------- book ---------
 export const ValidateBook = (book) => {
-  const { name, detail,qty,order_price,sale_price } = book;
-  return ValidateData({ name, detail,qty,order_price,sale_price });
+  const { name, detail,qty,order_price,sale_price,category_id } = book;
+  return ValidateData({ name, detail,qty,order_price,sale_price,category_id });
+};
+export const ValidateUpdateBook = (book) => {
+  const {name, detail, amount, order_price, sale_price, oldImage} = book;
+  return ValidateData({name, detail, amount, order_price, sale_price, oldImage});
+}
+// ------------ address ---------
+export const ValidateAddress = (address) => {
+  const { village,district,province,latitude,longitude,phone } = address;
+  return ValidateData({village,district,province,latitude,longitude,phone });
 };
