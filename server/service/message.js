@@ -14,6 +14,7 @@ export const EMessage = {
     emailAlready: "Email is Already",
     notMatchPassword : "Not Match Password",
     notFound: "Not Found",
+    nocontent: "No Content",
     pleaseInput : "Please Input:",
     invalidToken: "Invalid Token",
 }

@@ -46,3 +46,14 @@ export const ValidateAddress = (address) => {
   const { village,district,province,latitude,longitude,phone } = address;
   return ValidateData({village,district,province,latitude,longitude,phone });
 };
+// ----------- order ---------
+export const ValidateOrder = (order)=>{
+  const {user_id, address_id, totalPrice} = order;
+  return ValidateData({user_id, address_id, totalPrice});
+}
+
+// ----------- favorite ---------
+export const ValidateFavorite = (favorite)=>{
+  const {user_id, book_id} = favorite;
+  return ValidateData({user_id, book_id});
+}

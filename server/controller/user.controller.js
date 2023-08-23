@@ -91,6 +91,7 @@ export default class UserController {
       return SendError500(res, EMessage.serverFaild, error);
     }
   }
+  
   static async register(req, res) {
     try {
       const validate = ValidateRegister(req.body);

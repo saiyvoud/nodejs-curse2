@@ -13,7 +13,8 @@ import "./config/db.js";
 import { PORT } from "./config/globalKey.js";
 import router from "./router/index.js";
 import fileUpload from "express-fileupload";
-
+import multer from "multer";
+const upload = multer();
 // import path from 'path';
 // import { fileURLToPath } from 'url';
 // const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +28,7 @@ app.use(bodyParser.json({ extended: true, limit: "500mb", parameterLimit: 500 })
 app.use(
   bodyParser.urlencoded({ extended: true, limit: "500mb", parameterLimit: 500 })
 );
+// app.use(upload.array("upload"));
 app.use("/api/v1.0.0",router);
 app.use("/api/v1.0.0/upload/", express.static("assets"));
 app.use((req, res, next) => {

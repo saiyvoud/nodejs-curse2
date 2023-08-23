@@ -7,6 +7,9 @@ export const SendSuccess = (res, message, data) => {
 export const SendError203 = (res, message, error) => {
   res.status(203).json({ status: false, message, error, data: {} });
 };
+export const SendError204 = (res, message, error) => {
+  res.status(204).json({ status: false, message, error, data: {} });
+};
 export const SendError400 = (res, message, error) => {
   res.status(400).json({ status: false, message, error, data: {} });
 };

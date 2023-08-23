@@ -14,14 +14,27 @@ const orderSchema = mongoose.Schema(
     },
     books: [
       {
+        _id: {
+          type: mongoose.Types.ObjectId,
+          require: true,
+        },
         category_id: {
           type: mongoose.Types.ObjectId,
           ref: "category",
           require: true,
         },
-        name: String,
-        detail: String,
-        amount: Number,
+        name: {
+          type: String,
+          require: true,
+        },
+        detail: {
+          type: String,
+          require: true,
+        },
+        amount: {
+          type: Number,
+          require: true,
+        },
         order_price: Number,
         sale_price: Number,
         image: String,
@@ -35,18 +48,10 @@ const orderSchema = mongoose.Schema(
         },
       },
     ],
-    payment: {
-      bill: String,
-      priceTotal: Number,
-      createdAt: {
-        type: Date,
-        default: Date.now(),
-      },
-      updatedAt: {
-        type: Date,
-        default: Date.now(),
-      },
-    },
+
+    bill: String,
+    totalPrice: Number,
+
     isActive: {
       type: Boolean,
       default: true,
