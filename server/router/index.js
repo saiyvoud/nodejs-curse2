@@ -17,7 +17,7 @@ router.get(`${user}/getAll`,auth,UserController.getAll);
 router.post(`${user}/register`,UserController.register);
 router.post(`${user}/login`,UserController.login);
 router.put(`${user}/forget`,UserController.forgerPassword);
-router.post(`${user}/refreshToken`,auth,auth_admin,UserController.refreshToken);
+router.post(`${user}/refreshToken`,auth,UserController.refreshToken);
 router.put(`${user}/updateProfile/:userId`,auth,UserController.updateProfile);
 router.put(`${user}/updateProfileImage/:userId`,auth,UserController.updateProfileImage);
 router.put(`${user}/changePassword/:userId`,auth,UserController.changPassword);
