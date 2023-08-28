@@ -91,7 +91,7 @@ export default class UserController {
       return SendError500(res, EMessage.serverFaild, error);
     }
   }
-  
+
   static async register(req, res) {
     try {
       const validate = ValidateRegister(req.body);
@@ -274,6 +274,9 @@ export default class UserController {
   static async refreshToken(req, res) {
     try {
       const { refreshToken } = req.body;
+      if (!refreshToken) {
+        return SendError400(res, "refreshToken is required!");
+      }
       const verify = await VerifyRefreshToken(refreshToken);
       const encriptID = await EnCrypts(JSON.stringify(verify));
       const encriptType = await EnCrypts(JSON.stringify(USER_TYPE));
