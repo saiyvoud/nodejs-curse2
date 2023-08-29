@@ -6,6 +6,18 @@ const addressSchema = mongoose.Schema(
       ref: "user",
       require: true,
     },
+    express: {
+      type: String,
+      require: true,
+    },
+    branch: {
+      type: String,
+      require: true
+    },
+    customer: {
+      type: String,
+      require: true
+    },
     phone: {
      type: Number,
      require: true,
