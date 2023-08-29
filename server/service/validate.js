@@ -43,8 +43,8 @@ export const ValidateUpdateBook = (book) => {
 }
 // ------------ address ---------
 export const ValidateAddress = (address) => {
-  const { village,district,province,latitude,longitude,phone } = address;
-  return ValidateData({village,district,province,latitude,longitude,phone });
+  const { customer,express,branch,village,district,province,latitude,longitude,phone } = address;
+  return ValidateData({customer,express,branch,village,district,province,latitude,longitude,phone });
 };
 // ----------- order ---------
 export const ValidateOrder = (order)=>{

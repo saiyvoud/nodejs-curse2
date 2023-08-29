@@ -54,6 +54,9 @@ export default class AddressController {
       }
       const {
         user_id,
+        customer,
+        express,
+        branch,
         village,
         district,
         province,
@@ -65,7 +68,11 @@ export default class AddressController {
         return SendError404(res, EMessage.notFound + " user_id");
       }
       const address = await Models.Address.create({
+
         user_id,
+        customer,
+        express,
+        branch,
         village,
         district,
         province,
@@ -92,11 +99,14 @@ export default class AddressController {
       if (validate.length > 0) {
         return SendError400(res, EMessage.pleaseInput + validate.join(","));
       }
-      const { village, district, province, latitude, longitude, phone } =
+      const { express,branch,customer,village, district, province, latitude, longitude, phone } =
         req.body;
       const address = await Models.Address.findByIdAndUpdate(
         addressId,
         {
+          customer,
+          express,
+          branch,
           village,
           district,
           province,
