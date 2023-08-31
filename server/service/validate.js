@@ -48,8 +48,8 @@ export const ValidateAddress = (address) => {
 };
 // ----------- order ---------
 export const ValidateOrder = (order)=>{
-  const {user_id, address_id, totalPrice} = order;
-  return ValidateData({user_id, address_id, totalPrice});
+  const {user_id, address_id, totalPrice,time} = order;
+  return ValidateData({user_id, address_id, totalPrice,time});
 }
 
 // ----------- favorite ---------

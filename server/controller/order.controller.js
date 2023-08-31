@@ -57,7 +57,7 @@ export default class OrderController {
       if (validate.length > 0) {
         return SendError400(res, EMessage.pleaseInput + validate.join(","));
       }
-      const { user_id, address_id, books, totalPrice } = req.body;
+      const { user_id, address_id, books, totalPrice,time } = req.body;
 
       let covert = JSON.parse(books);
       const bill = req.files.bill;
@@ -70,7 +70,7 @@ export default class OrderController {
         user_id,
         address_id,
         books: covert,
-
+        time,
         totalPrice,
         bill: image_url,
       });

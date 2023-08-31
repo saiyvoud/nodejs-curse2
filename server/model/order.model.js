@@ -51,6 +51,7 @@ const orderSchema = mongoose.Schema(
 
     bill: String,
     totalPrice: Number,
+    time: String,
 
     isActive: {
       type: Boolean,
