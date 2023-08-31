@@ -58,8 +58,8 @@ export default class OrderController {
         return SendError400(res, EMessage.pleaseInput + validate.join(","));
       }
       const { user_id, address_id, books, totalPrice,time } = req.body;
-       console.log(books);
-      let covert = JSON.stringify(books);
+      
+      let covert = JSON.parse(books);
       const bill = req.files.bill;
       if (!bill) {
         return SendError400(res, "files is required!");
