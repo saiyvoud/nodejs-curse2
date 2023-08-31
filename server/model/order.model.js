@@ -35,9 +35,18 @@ const orderSchema = mongoose.Schema(
           type: Number,
           require: true,
         },
-        order_price: Number,
-        sale_price: Number,
-        image: String,
+        order_price: {
+          type: Number,
+          require: true,
+        },
+        sale_price: {
+          type: Number,
+          require: true,
+        },
+        image: {
+          type: String,
+          require: true,
+        },
         createdAt: {
           type: Date,
           default: Date.now(),
