@@ -59,7 +59,8 @@ export default class OrderController {
       }
       const { user_id, address_id, books, totalPrice, time } = req.body;
 
-      let covert = Object.assign(JSON.parse(JSON.stringify(books)));
+      let covert = JSON.parse(books);
+      console.log(`======>${covert}`);
       const bill = req.files.bill;
       if (!bill) {
         return SendError400(res, "files is required!");
