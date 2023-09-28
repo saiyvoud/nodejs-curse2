@@ -167,7 +167,7 @@ export default class UserController {
       }
       const path = req.files.image;
       if (!path) {
-        return SendError400(res, "files is required!");
+        return SendError400(res, "images is required!");
       }
       const image_url = await UploadImage(path.data);
 
