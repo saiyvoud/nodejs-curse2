@@ -6,6 +6,7 @@ import {
 } from "../config/globalKey.js";
 import jwt from "jsonwebtoken";
 import Models from "../model/index.js";
+
 export const VerifyToken = (token) => {
   return new Promise(async (resovle, reject) => {
     try {
@@ -54,6 +55,7 @@ export const EnCrypts = async (data) => {
     }
   });
 };
+
 export const DeCrypts = async (data) => {
   return new Promise(async (resovle, reject) => {
     try {
