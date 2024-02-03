@@ -10,11 +10,11 @@ import Models from "../model/index.js";
 export const VerifyToken = (token) => {
   return new Promise(async (resovle, reject) => {
     try {
-      jwt.verify(token, SECRET_KEY, async (err, decode) => {
+      var decript = await DeCrypts(token);
+      
+      jwt.verify(decript, SECRET_KEY, async (err, decode) => {
         if (err) reject(`err${err}`);
-
-        const decriptToken = await DeCrypts(decode.id);
-
+        const decriptToken = await DeCrypts(decode.id)
         if (!decriptToken) {
           reject("Error Decript");
         }
@@ -36,7 +36,7 @@ export const VerifyRefreshToken = (refreshToken) => {
         const decript = await DeCrypts(decoded.id);
         const decript2 = await DeCrypts(decript);
         let decriptReplace = decript2.replace(/"/g, "");
-        const user = await Models.User.findById(decriptReplace)
+        const user = await Models.User.findById(decriptReplace);
         resovle(user.id);
       });
     } catch (error) {
@@ -98,13 +98,13 @@ export const jwts = async (data) => {
         expiresIn: parseInt(JWT_OUT_REFRESH_TOKEN),
       };
       //Generated JWT token with Payload and secret.
-      const token = jwt.sign(payload, SECRET_KEY, jwtData);
+      const tokens = jwt.sign(payload, SECRET_KEY, jwtData);
       const refreshToken = jwt.sign(
         payload_refress,
         SECRET_KEY,
         jwtDataRefresh
       );
-
+       var token = await EnCrypts(tokens)
       resovle({ token, refreshToken });
     } catch (error) {
       console.log(error);
